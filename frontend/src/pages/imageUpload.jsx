@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
@@ -11,19 +11,23 @@ const FileUpload = () => {
 
   const onFileUpload = async () => {
     const formData = new FormData();
-    formData.append('file', file)
-    formData.append('caption', 'hello this ist')
+    formData.append("file", file);
+    formData.append("caption", "hello this ist");
 
     try {
-      const res = await axios.post('http://localhost:3001/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const res = await axios.post(
+        "https://book-store-backend-6fgb.onrender.com/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       setUploadedFile(res.data);
     } catch (err) {
-      console.error('Error uploading file:', err);
+      console.error("Error uploading file:", err);
     }
   };
 
@@ -36,10 +40,12 @@ const FileUpload = () => {
         <div>
           <h3>Uploaded File:</h3>
           <p>{uploadedFile}</p>
-          <img src={`http://localhost:3001/uploads/${uploadedFile}`} alt="Uploaded file" />
+          <img
+            src={`http://localhost:3001/uploads/${uploadedFile}`}
+            alt="Uploaded file"
+          />
         </div>
       )}
-
     </div>
   );
 };

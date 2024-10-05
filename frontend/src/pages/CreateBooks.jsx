@@ -22,7 +22,7 @@ const CreateBooks = () => {
 
     setLoading(true);
     axios
-      .post("http://localhost:3001/books", data) // Corrected URL
+      .post("https://book-store-backend-6fgb.onrender.com/books", data) // Corrected URL
       .then(() => {
         setLoading(false);
         navigate("/");
