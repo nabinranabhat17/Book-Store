@@ -5,15 +5,19 @@ import { Book } from "./model/bookModel.js";
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
+import dotenv from "dotenv";
+
+// Load environment variables from .env file
+dotenv.config({ path: "../.env" });
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
-const mongodbURL =
-  "mongodb+srv://root:root@learn-db.xako9zs.mongodb.net/?retryWrites=true&w=majority&appName=learn-db";
+// Use MongoDB URL from environment variables
+const mongodbURL = process.env.MONGODB_URL;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
